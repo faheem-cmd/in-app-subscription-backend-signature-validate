@@ -1,0 +1,20 @@
+For testing: https://sandbox.itunes.apple.com/verifyReceipt
+For production: https://buy.itunes.apple.com/verifyReceipt
+
+
+App Side
+   const reciept = await getReceiptIOS({forceRefresh: true});
+      let data = JSON.stringify({
+        type: Config.TYPE,
+        receipt: reciept,
+      });
+
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: `${Config.API_URL}iosAutoPayment`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: data,
+      };
