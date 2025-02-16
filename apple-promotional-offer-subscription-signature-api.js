@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const port = 8000;
@@ -16,7 +17,7 @@ const privateKeyPath = "Example.p8"; // Private Key Path
 // 🔹 Generate Offer Signature Function
 function generateOfferSignature(productID, offerID, applicationUsername) {
   try {
-    const nonce = "90b7a2a8-1eac-46d9-a7cd-308fa1d5313d"; // Static nonce (replace with dynamic UUID)
+    const nonce = uuidv4() 
     const timestamp = Math.floor(Date.now() / 1000);
 
     // Read private key
